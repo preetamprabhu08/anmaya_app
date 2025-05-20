@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.anmayatechnologies.anmaya",
+    "sha256_cert_fingerprints": ["D8E865B318804231FDE82D5A39AF1ADEFA5418ED3858704443CA7194CF5D81F96"]
+  }
+}]
