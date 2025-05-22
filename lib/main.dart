@@ -5,6 +5,9 @@ import 'package:anmaya/screens/homepage.dart';
 import 'package:anmaya/screens/signin.dart';
 import 'package:anmaya/screens/signup.dart';
 import 'package:flutter/foundation.dart';
+import 'package:anmaya/utils/deep_link_helper.dart';
+import 'package:anmaya/screens/settings.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -30,6 +33,10 @@ final GoRouter _router = GoRouter(
       path: '/signup',
       builder: (context, state) => const SignUpPage(),
     ),
+    GoRoute(
+  path: '/settings',
+  builder: (context, state) => const SettingsPage(),
+),
   ],
   // Enhanced redirect logic to handle all URI patterns
   redirect: (context, state) {
@@ -39,7 +46,7 @@ final GoRouter _router = GoRouter(
     debugPrint('Deep link URI: ${uri.toString()}');
     
     // Custom app scheme handling
-    if (uri.scheme == 'anmayaapp' && uri.host == 'open') {
+    if (uri.scheme == 'anmaya' && uri.host == 'open') {
       final path = uri.path.isEmpty ? '/' : uri.path;
       debugPrint('Redirecting custom scheme to: $path');
       return path;
@@ -71,3 +78,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+

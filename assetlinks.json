@@ -3,6 +3,6 @@
   "target": {
     "namespace": "android_app",
     "package_name": "com.anmayatechnologies.anmaya",
-    "sha256_cert_fingerprints": ["D8E865B318804231FDE82D5A39AF1ADEFA5418ED3858704443CA7194CF5D81F96"]
+    "sha256_cert_fingerprints": ["C8DF77FD70FC9E3F4B2487D8420940880599A28F0D1A6827517F9582F54F61389"]
   }
 }]

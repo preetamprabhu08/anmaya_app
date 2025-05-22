@@ -1,3 +1,17 @@
+import java.util.Properties
+import java.io.FileInputStream
+import java.io.File
+
+val keystoreProperties = Properties()
+// Use direct file path to android/key.properties
+val keystorePropertiesFile = File(rootProject.projectDir, "key.properties")
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+    println("Loaded keystore properties from ${keystorePropertiesFile.absolutePath}")
+} else {
+    println("Warning: ${keystorePropertiesFile.absolutePath} not found")
+}
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -8,7 +22,7 @@ plugins {
 android {
     namespace = "com.anmayatechnologies.anmaya"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "27.0.12077973"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -30,11 +44,19 @@ android {
         versionName = flutter.versionName
     }
 
+    signingConfigs {
+        create("release") {
+            keyAlias = keystoreProperties["keyAlias"]?.toString() ?: "anmaya-key"
+            keyPassword = keystoreProperties["keyPassword"]?.toString() ?: "preetam"
+            storeFile = file("anmaya-release-key.jks")
+            storePassword = keystoreProperties["storePassword"]?.toString() ?: "preetam"
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            // Updated to use the release signing config
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 }

@@ -1,8 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:anmaya/utils/deep_link_helper.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    
+    // Show after a short delay when the app starts
+    Future.delayed(Duration(seconds: 2), () {
+      DeepLinkHelper.showEnableDeepLinksDialog(context);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
