@@ -43,3 +43,26 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Firebase Configuration (contains API keys)
+**/google-services.json
+**/GoogleService-Info.plist
+
+# Keystore files (contains signing keys)
+*.jks
+*.keystore
+**/*.jks
+**/*.keystore
+
+# Key properties (contains passwords)
+**/key.properties
+android/key.properties
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# API Keys and secrets
+**/secrets.json
+**/api-keys.json
