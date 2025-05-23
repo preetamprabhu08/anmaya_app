@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:anmaya/utils/deep_link_helper.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,10 +13,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     
-    // Show after a short delay when the app starts
-    Future.delayed(Duration(seconds: 2), () {
-      DeepLinkHelper.showEnableDeepLinksDialog(context);
-    });
+    // Deep links are configured via settings if needed
   }
 
   @override
