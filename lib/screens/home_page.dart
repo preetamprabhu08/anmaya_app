@@ -39,7 +39,11 @@ class _HomePageState extends State<HomePage> {
               onPressed: () => context.go('/edtech/courses'),
               child: const Text('Courses'),
             ),
-            
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () => context.go('/server-check'),
+              child: const Text('Check Server Connection'),
+            ),
           ],
         ),
       ),

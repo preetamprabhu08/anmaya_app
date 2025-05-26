@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:anmaya/routes/routes.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+Future<void> main() async {
+  await dotenv.load(fileName: ".env");
   runApp(const MyApp());
 }
 
@@ -12,6 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: router,
+      // debugShowCheckedModeBanner: false,
       title: 'Anmaya Technologies',
       theme: ThemeData(
         primarySwatch: Colors.blue,

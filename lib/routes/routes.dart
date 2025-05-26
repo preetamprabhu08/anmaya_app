@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/foundation.dart';
 import 'package:anmaya/screens/courses.dart';
-import 'package:anmaya/screens/homepage.dart';
+import 'package:anmaya/screens/home_page.dart';
 import 'package:anmaya/screens/signin.dart';
 import 'package:anmaya/screens/signup.dart';
+import 'package:anmaya/server_check.dart';
 
 /// Global router configuration for the app
 final GoRouter router = GoRouter(
@@ -26,6 +27,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/signup',
       builder: (context, state) => const SignUpPage(),
+    ),
+    GoRoute(
+      path: '/server-check',
+      builder: (context, state) => const ServerCheckPage(),
     ),
   ],
   // Enhanced redirect logic to handle all URI patterns
