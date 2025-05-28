@@ -1,5 +1,3 @@
-// lib/server_check.dart
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -15,7 +13,7 @@ class ServerCheckPage extends StatefulWidget {
 class _ServerCheckPageState extends State<ServerCheckPage> {
   String _status = 'Press the button to check server connection';
   bool _isLoading = false;
-  final String _endpoint = 'api/health';
+  final String _endpoint = '/api/health';
 
   Future<void> checkServerConnection() async {
     setState(() {
