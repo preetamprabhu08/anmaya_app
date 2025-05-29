@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'signin.dart';
+import 'package:anmaya/widgets/auth/google_auth.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -40,7 +40,8 @@ class _SignUpPageState extends State<SignUpPage> {
         backgroundColor: Colors.black,
         iconTheme: const IconThemeData(color: Colors.white),
       ),
-      body: SingleChildScrollView(
+      body: Center(
+        child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
           child: Form(
@@ -340,43 +341,29 @@ class _SignUpPageState extends State<SignUpPage> {
                     style: TextStyle(color: Colors.white70, fontSize: 16),
                   ),
                 ),
-                const SizedBox(height: 10),
-                ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      // TODO: Implement signup functionality
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Processing Sign Up...')),
-                      );
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      side: const BorderSide(
-                        color:
-                            Colors
-                                .red, // Change this to your desired border color
-                        width: 2, // Optional: set border width
-                      ),
-                    ),
-                  ),
-                  child: const Text(
-                    'Sign in with Google',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                ),
                 const SizedBox(height: 20),
-
+            
+                GoogleAuthButton(
+                  onSignInSuccess: (credential) {
+                    // Handle successful sign-up
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Signed up with Google')),
+                    );
+                  },
+                  onSignInError: (error) {
+                    // Handle error
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Error: \$error')),
+                    );
+                  },
+                ),
                 const SizedBox(height: 20),
               ],
             ),
           ),
         ),
       ),
+      )
     );
   }
 }

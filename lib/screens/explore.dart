@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:anmaya/widgets/bottom_navbar.dart';
-import 'package:anmaya/widgets/sidebar.dart';
+import 'package:anmaya/widgets/static/bottom_navbar.dart';
+import 'package:anmaya/widgets/static/sidebar.dart';
 
 
 class CoursesPage extends StatelessWidget {

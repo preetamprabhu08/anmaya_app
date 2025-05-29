@@ -40,6 +40,18 @@ dependencies:
   http: ^1.2.0
   flutter_dotenv: ^5.1.0
   firebase_core: ^2.32.0
+  fluttertoast: ^8.2.1
+  firebase_auth: ^4.4.0
+  cloud_firestore: ^4.5.0
+  # Add other Firebase packages as needed, e.g.:
+  firebase_storage: ^11.1.0
+  firebase_analytics: ^10.4.0
+
+
+
+  # for google sign in
+  google_sign_in: ^5.4.2
+
 
 
 dev_dependencies:
@@ -66,6 +78,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - web/icons/google_logo.png
     - .env
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
