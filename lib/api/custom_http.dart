@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class CustomHttp {
-  static final String _baseUrl = dotenv.env['LOCAL_SERVER_URL'] ?? '';
+  static final String _baseUrl = dotenv.env['PRODUCTION_SERVER_URL'] ?? '';
 
   // Example: GET request
   static Future<http.Response> get(String endpoint, {Map<String, String>? headers}) async {

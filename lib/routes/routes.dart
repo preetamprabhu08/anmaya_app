@@ -7,6 +7,15 @@ import 'package:anmaya/screens/signin.dart';
 import 'package:anmaya/screens/signup.dart';
 import 'package:anmaya/server_check.dart';
 import 'package:anmaya/screens/profile.dart';
+import 'package:anmaya/screens/help.dart';
+import 'package:anmaya/screens/settings.dart';
+import 'package:anmaya/screens/my_course.dart';
+import 'package:anmaya/screens/wishlist.dart';
+import 'package:anmaya/screens/contact.dart';
+import 'package:anmaya/screens/course_details.dart';
+import 'package:anmaya/screens/view_course.dart';
+import 'package:anmaya/screens/forgot_password.dart';
+
 
 
 /// Global router configuration for the app
@@ -45,6 +54,38 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/profile',
       builder: (context, state) => const ProfilePage(),
+    ),
+    GoRoute(
+      path: '/settings',
+      builder: (context, state) => const SettingsPage(),
+    ),
+    GoRoute(
+      path: '/my-course',
+      builder: (context, state) => const MyCoursePage(),
+    ),
+    GoRoute(
+      path: '/wishlists',
+      builder: (context, state) => const WishlistPage(),
+    ),
+    GoRoute(
+      path: '/contact',
+      builder: (context, state) => const ContactPage(),
+    ),
+    GoRoute(
+      path: '/course-details',
+      builder: (context, state) => const CourseDetailsPage(),
+    ),
+    GoRoute(
+      path: '/help',
+      builder: (context, state) => const HelpPage(),
+    ),
+    GoRoute(
+      path: '/forgot-password',
+      builder: (context, state) => const ForgotPasswordPage(),
+    ),
+    GoRoute(
+      path: '/view-course',
+      builder: (context, state) => const ViewCoursePage(),
     ),
   ],
   // Enhanced redirect logic to handle all URI patterns

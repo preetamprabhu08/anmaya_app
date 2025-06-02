@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'api/custom_http.dart';
+import 'app_colors.dart';
+
 
 class ServerCheckPage extends StatefulWidget {
   const ServerCheckPage({Key? key}) : super(key: key);
@@ -91,9 +93,9 @@ class _ServerCheckPageState extends State<ServerCheckPage> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 16,
-                  color: _status.contains('✅') ? Colors.green : 
-                         _status.contains('❌') ? Colors.red : 
-                         Colors.black,
+                  color: _status.contains('✅') ? AppColors.info : 
+                         _status.contains('❌') ? AppColors.error : 
+                         AppColors.black1,
                 ),
               ),
             ),

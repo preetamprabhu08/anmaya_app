@@ -51,6 +51,8 @@ dependencies:
 
   # for google sign in
   google_sign_in: ^5.4.2
+  # for global functions
+  provider: ^6.1.2
 
 
 

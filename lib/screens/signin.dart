@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:anmaya/widgets/auth/google_auth.dart';
+import 'package:anmaya/app_colors.dart';
+
 
 // Change StatelessWidget to StatefulWidget
 class SignInPage extends StatefulWidget {
@@ -30,14 +32,14 @@ class _SignInPageState extends State<SignInPage> {
   Widget build(BuildContext context) {
     
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppColors.background,
       appBar: AppBar(
         title: const Text(
           'Sign In',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          style: TextStyle(color: AppColors.text1, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Colors.black,
-        iconTheme: const IconThemeData(color: Colors.white),
+        backgroundColor: AppColors.background,
+        iconTheme: const IconThemeData(color: AppColors.icons1),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => context.pop(),
@@ -61,7 +63,7 @@ class _SignInPageState extends State<SignInPage> {
                       style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: AppColors.text1,
                       ),
                     ),
                   ),
@@ -70,29 +72,29 @@ class _SignInPageState extends State<SignInPage> {
                   // Email field
                   TextFormField(
                     controller: _emailController,
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: AppColors.text1),
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       labelText: 'Email',
-                      labelStyle: TextStyle(color: Colors.white70),
+                      labelStyle: TextStyle(color: AppColors.text1),
                       prefixIcon: Icon(
                         Icons.email_outlined,
-                        color: Colors.white70,
+                        color: AppColors.text1,
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white38),
+                        borderSide: BorderSide(color: AppColors.text1),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blue),
+                        borderSide: BorderSide(color: AppColors.primary5),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       errorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.red),
+                        borderSide: BorderSide(color: AppColors.error),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       focusedErrorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.red),
+                        borderSide: BorderSide(color: AppColors.error),
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
@@ -112,26 +114,26 @@ class _SignInPageState extends State<SignInPage> {
                   // Password field
                   TextFormField(
                     controller: _passwordController,
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: AppColors.text1),
                     obscureText: !_isPasswordVisible,
                     decoration: InputDecoration(
                       labelText: 'Password',
-                      labelStyle: TextStyle(color: Colors.white70),
-                      prefixIcon: Icon(Icons.lock_outline, color: Colors.white70),
+                      labelStyle: TextStyle(color: AppColors.text1),
+                      prefixIcon: Icon(Icons.lock_outline, color: AppColors.text1),
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white38),
+                        borderSide: BorderSide(color: AppColors.text1),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blue),
+                        borderSide: BorderSide(color: AppColors.primary5),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       errorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.red),
+                        borderSide: BorderSide(color: AppColors.error),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       focusedErrorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.red),
+                        borderSide: BorderSide(color: AppColors.error),
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
@@ -159,14 +161,14 @@ class _SignInPageState extends State<SignInPage> {
                           Set<MaterialState> states,
                         ) {
                           if (states.contains(MaterialState.selected)) {
-                            return Colors.blue;
+                            return AppColors.primary5;
                           }
-                          return Colors.white70;
+                          return AppColors.text1;
                         }),
                       ),
                       Text(
                         'Show password',
-                        style: TextStyle(color: Colors.white70),
+                        style: TextStyle(color: AppColors.text1),
                       ),
                     ],
                   ),
@@ -187,8 +189,8 @@ class _SignInPageState extends State<SignInPage> {
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                      foregroundColor: Colors.white,
+                      backgroundColor: AppColors.primary5,
+                      foregroundColor: AppColors.primary8,
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
@@ -199,6 +201,24 @@ class _SignInPageState extends State<SignInPage> {
                       style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                   ),
+                  const SizedBox(height: 5),
+                   Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          context.push('/forgot-password');
+                        },
+                        child: Text(
+                          'forgot password',
+                          style: TextStyle(
+                            color: AppColors.primary5,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                   const SizedBox(height: 20),
 
                   // Login link
@@ -207,7 +227,7 @@ class _SignInPageState extends State<SignInPage> {
                     children: [
                       Text(
                         'Dont have an account? ',
-                        style: TextStyle(color: Colors.white70),
+                        style: TextStyle(color: AppColors.text1),
                       ),
                       GestureDetector(
                         onTap: () {
@@ -216,7 +236,7 @@ class _SignInPageState extends State<SignInPage> {
                         child: Text(
                           'Sign Up',
                           style: TextStyle(
-                            color: Colors.blue,
+                            color: AppColors.primary5,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -227,7 +247,7 @@ class _SignInPageState extends State<SignInPage> {
                   Center(
                     child: Text(
                       'or',
-                      style: TextStyle(color: Colors.white70, fontSize: 16),
+                      style: TextStyle(color: AppColors.text1, fontSize: 16),
                     ),
                   ),
                   const SizedBox(height: 10),
