@@ -53,6 +53,7 @@ dependencies:
   google_sign_in: ^5.4.2
   # for global functions
   provider: ^6.1.2
+  shared_preferences: ^2.5.3
 
 
 

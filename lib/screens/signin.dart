@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:anmaya/widgets/auth/google_auth.dart';
 import 'package:anmaya/app_colors.dart';
-
+import 'package:provider/provider.dart';
+import 'package:anmaya/provider/auth_provider.dart' as auth;
 
 // Change StatelessWidget to StatefulWidget
 class SignInPage extends StatefulWidget {
@@ -19,6 +20,7 @@ class _SignInPageState extends State<SignInPage> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
   bool _isPasswordVisible = false;
+  bool _isLoading = false;
 
   @override
   void dispose() {
@@ -28,8 +30,63 @@ class _SignInPageState extends State<SignInPage> {
     super.dispose();
   }
 
+  // Handle login
+  Future<void> _handleSignIn() async {
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        _isLoading = true;
+      });
+
+      final authProvider = Provider.of<auth.AuthProvider>(context, listen: false);
+      
+      try {
+        final success = await authProvider.login(
+          email: _emailController.text.trim(),
+          password: _passwordController.text,
+        );
+        
+        // Check mounted state before updating UI
+        if (!mounted) return;
+
+        if (success) {
+          // Navigate to home or dashboard on success
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Login successful!'),
+              backgroundColor: Colors.green,
+            ),
+          );
+          context.go('/'); // Or navigate to dashboard
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(authProvider.error ?? 'Login failed'),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+      } catch (e) {
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      } finally {
+        if (mounted) {
+          setState(() {
+            _isLoading = false;
+          });
+        }
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    // Listen to auth provider changes
+    final authProvider = Provider.of<auth.AuthProvider>(context);
     
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -176,18 +233,7 @@ class _SignInPageState extends State<SignInPage> {
 
                   // Sign in button
                   ElevatedButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        // Print all input values to terminal
-                        debugPrint('Email: ${_emailController.text}');
-                        debugPrint('Password: ${_passwordController.text}');
-                        
-                        // TODO: Implement signup functionality
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Processing Sign in...')),
-                        );
-                      }
-                    },
+                    onPressed: authProvider.loading || _isLoading ? null : _handleSignIn,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.primary5,
                       foregroundColor: AppColors.primary8,
@@ -195,11 +241,21 @@ class _SignInPageState extends State<SignInPage> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
+                      disabledBackgroundColor: AppColors.primary5.withOpacity(0.5),
                     ),
-                    child: const Text(
-                      'SIGN IN',
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
+                    child: authProvider.loading || _isLoading
+                        ? const SizedBox(
+                            height: 20,
+                            width: 20,
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                              strokeWidth: 2,
+                            ),
+                          )
+                        : const Text(
+                            'SIGN IN',
+                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
                   ),
                   const SizedBox(height: 5),
                    Row(
@@ -262,7 +318,7 @@ class _SignInPageState extends State<SignInPage> {
                     onSignInError: (error) {
                       // Handle error
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Error: \$error')),
+                        SnackBar(content: Text('Error: $error')),
                       );
                     },
                   ),
